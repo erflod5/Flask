@@ -1,0 +1,35 @@
+{% extends "layout.html" %} {% block body %}
+<div class="row">
+  <div class="col-md-5">
+    <h1>Actualizar Orden</h1>
+    <form action="/order/update/{{order.0}}" method="POST">
+        <div class="col">
+          <input type="text" name="origen" placeholder="Origen" value="{{order.1}}" class="form-control"/>
+        </div>
+        <div class="col">
+          <input type="text" name="destino" placeholder="Destino" value="{{order.2}}" class="form-control"/>
+        </div>
+        <div class="col">
+          <select class="form-control" id="usersSelect" name="usersSelect">
+            {% for user in users %}
+                {% if order.5 == user.0 %}
+                    <option value="{{ user.0 }}" selected>{{  user.1 }}</option>
+                {% else %}
+                    <option value="{{ user.0 }}">{{  user.1 }}</option>
+                {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col">
+          <input type="text" name="producto" placeholder="Producto" value="{{order.3}}" class="form-control"/>
+        </div>
+        <div class="col">
+          <input type="text" name="address" placeholder="Direccion" value="{{order.4}}" class="form-control"/>
+        </div>
+        <div class="col mt-4">
+          <button type="submit" class="btn btn-primary" class="form-control">Actualizar Orden</button>
+        </div>
+      </form>
+  </div>
+</div>
+{% endblock %}

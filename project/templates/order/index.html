@@ -1,0 +1,65 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="row">
+  <div class="col-md-5">
+    <h1>Crear Orden</h1>
+    <form action="/order" method="POST">
+      <div class="col">
+        <input type="text" name="origen" placeholder="Origen" class="form-control"/>
+      </div>
+      <div class="col">
+        <input type="text" name="destino" placeholder="Destino" class="form-control"/>
+      </div>
+      <div class="col">
+        <select class="form-control" id="usersSelect" name="usersSelect">
+          {% for user in users %}
+          <option value="{{ user.0 }}">{{  user.1 }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col">
+        <input type="text" name="producto" placeholder="Producto" class="form-control"/>
+      </div>
+      <div class="col">
+        <input type="text" name="address" placeholder="Direccion" class="form-control"/>
+      </div>
+      <div class="col mt-4">
+        <button type="submit" class="btn btn-primary" class="form-control">Crear Orden</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-7">
+    <h1>Ordenes</h1>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Origen</th>
+          <th>Destino</th>
+          <th>Usuario</th>
+          <th>Producto</th>
+          <th>Ubicacion</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td>{{order.1}}</td>
+          <td>{{order.2}}</td>
+          <td>{{order.3}}</td>
+          <td>{{order.4}}</td>
+          <td>{{order.5}}</td>
+          <td>
+            <a href="/order/edit/{{order.0}}" class="btn btn-sm btn-secondary">Editar</a>
+          </td>
+          <td>
+            <a href="/order/delete/{{order.0}}" class="btn btn-sm btn-danger">Eliminar</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
